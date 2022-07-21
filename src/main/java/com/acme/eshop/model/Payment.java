@@ -1,11 +1,13 @@
 package com.acme.eshop.model;
 
-public class Payment {
-    private int paymentID;
+public class Payment  {
+    private int paymentId;
     private double amount;
 
-    public Payment(int paymentID, double amount) {
-        this.paymentID = paymentID;
+
+
+    public Payment(int paymentId, double amount) {
+        this.paymentId = paymentId;
         this.amount = amount;
     }
 
@@ -13,16 +15,16 @@ public class Payment {
 
     }
 
-    public int getPaymentID() {
-        return paymentID;
+    public int getPaymentId() {
+        return paymentId;
     }
 
     public double getAmount() {
         return amount;
     }
 
-    public void setPaymentID(int paymentID) {
-        this.paymentID = paymentID;
+    public void setPaymentId(int paymentId) {
+        this.paymentId = paymentId;
     }
 
     public void setAmount(double amount) {

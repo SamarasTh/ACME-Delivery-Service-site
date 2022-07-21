@@ -2,18 +2,19 @@ package com.acme.eshop.model;
 
 public class Customer {
     private int customerId;
-    private String fname;
-    private String lname;
-    private long phone;
+    private String fName;
+    private String lName;
+    private Long phone;
     private String address;
+    private String email;
 
-    Customer(int id, String fname, String lname, long phone, String address)
-    {
-        this.customerId = id;
-        this.fname = fname;
-        this.lname = lname;
-        this.phone = phone;
-        this.address = address;
+    public Customer(int id, String fName, String lName, Long phone, String address, String email){
+        this.customerId=id;
+        this.fName = fName;
+        this.lName = lName;
+        this.phone=phone;
+        this.address=address;
+        this.email=email;
     }
 
     public Customer() {
@@ -27,27 +28,27 @@ public class Customer {
         this.customerId = customerId;
     }
 
-    public String getFname() {
-        return fname;
+    public String getfName() {
+        return fName;
     }
 
-    public void setFname(String fname) {
-        this.fname = fname;
+    public void setfName(String fName) {
+        this.fName = fName;
     }
 
-    public String getLname() {
-        return lname;
+    public String getlName() {
+        return lName;
     }
 
-    public void setLname(String lname) {
-        this.lname = lname;
+    public void setlName(String lName) {
+        this.lName = lName;
     }
 
-    public long getPhone() {
+    public Long getPhone() {
         return phone;
     }
 
-    public void setPhone(long phone) {
+    public void setPhone(Long phone) {
         this.phone = phone;
     }
 
@@ -57,5 +58,13 @@ public class Customer {
 
     public void setAddress(String address) {
         address = address;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 }

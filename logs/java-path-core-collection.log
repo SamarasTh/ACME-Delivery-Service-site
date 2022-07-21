@@ -1,0 +1,4 @@
+2022-07-21 11:23:36.049  INFO LT-70A4000-011 - [           main] c.a.e.AcmeApplication          : Hello world
+2022-07-21 11:23:36.056  INFO LT-70A4000-011 - [           main] c.a.e.AcmeApplication          : Hello world
+2022-07-21 11:23:36.056  INFO LT-70A4000-011 - [           main] c.a.e.AcmeApplication          : Hello world
+2022-07-21 11:23:36.056  WARN LT-70A4000-011 - [           main] c.a.e.AcmeApplication          : Hello world

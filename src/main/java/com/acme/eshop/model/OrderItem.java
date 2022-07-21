@@ -1,12 +1,12 @@
 package com.acme.eshop.model;
 
-public class OrderItem {
+public class OrderItem extends Product {
 
-    private int orderItem_id;
+    private int orderItemId;
     private int quantity;
 
-    public OrderItem(int orderItem_id, int quantity) {
-        this.orderItem_id = orderItem_id;
+    public OrderItem(int orderItemId, int quantity) {
+        this.orderItemId = orderItemId;
         this.quantity = quantity;
     }
 
@@ -14,12 +14,12 @@ public class OrderItem {
 
     }
 
-    public int getOrderItem_id() {
-        return orderItem_id;
+    public int getOrderItemId() {
+        return orderItemId;
     }
 
-    public void setOrderItem_id(int orderItem_id) {
-        this.orderItem_id = orderItem_id;
+    public void setOrderItemId(int orderItemId) {
+        this.orderItemId = orderItemId;
     }
 
     public int getQuantity() {
