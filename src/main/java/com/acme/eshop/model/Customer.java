@@ -7,12 +7,13 @@ public class Customer {
     private long phone;
     private String address;
 
-    Customer(int id,String fname, String lname, long phone,String address){
-        this.customerId=id;
-        this.fname=fname;
-        this.lname=lname;
-        this.phone=phone;
-        this.address=address;
+    Customer(int id, String fname, String lname, long phone, String address)
+    {
+        this.customerId = id;
+        this.fname = fname;
+        this.lname = lname;
+        this.phone = phone;
+        this.address = address;
     }
 
     public Customer() {
