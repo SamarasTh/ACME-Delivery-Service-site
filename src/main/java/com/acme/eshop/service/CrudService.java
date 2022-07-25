@@ -1,19 +1,20 @@
 package com.acme.eshop.service;
 
-import com.acme.eshop.utils.BusinessException;
 
+
+import java.sql.SQLException;
 import java.util.List;
 import java.util.Optional;
 
 public interface CrudService<T , ID> {
 
-    void create(T t) throws BusinessException;
+    void create(T t) throws SQLException;
 
-    List<T> findAll() throws BusinessException;
+    List<T> findAll() throws SQLException;
 
-    Optional<T> findByID(ID id) throws BusinessException;
+    Optional<T> findByID(ID id) throws SQLException;
 
-    boolean update(T t) throws BusinessException;
+    boolean update(T t) throws SQLException;
 
-    boolean delete(T t) throws BusinessException;
+    boolean delete(T t) throws SQLException;
 }

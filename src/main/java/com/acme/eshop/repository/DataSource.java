@@ -30,7 +30,7 @@ public class DataSource {
 
             config.addDataSourceProperty("maximumPoolSize", "10");
             config.addDataSourceProperty("minimumIdle", "2");
-            config.addDataSourceProperty("idleTimeout", "10000");
+            config.addDataSourceProperty("idleTimeout", "300000");
 
             hikariDataSource = new HikariDataSource(config);
         }

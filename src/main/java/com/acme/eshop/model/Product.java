@@ -5,6 +5,8 @@ import lombok.Setter;
 import lombok.ToString;
 import lombok.experimental.SuperBuilder;
 
+import java.math.BigDecimal;
+
 @Getter
 @Setter
 @ToString(callSuper = true)
@@ -12,8 +14,9 @@ import lombok.experimental.SuperBuilder;
 public class Product extends BaseModel {
 
 
-    private double price;
+    private BigDecimal price;
     private String name;
+    private String type;
 
 
 }

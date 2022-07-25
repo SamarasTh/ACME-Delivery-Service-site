@@ -5,18 +5,22 @@ import lombok.Setter;
 import lombok.ToString;
 import lombok.experimental.SuperBuilder;
 
-import java.util.ArrayList;
+import java.math.BigDecimal;
 import java.util.List;
+
 @Getter
 @Setter
 @ToString(callSuper = true)
 @SuperBuilder
-public class Order extends BaseModel{
+public class Order extends BaseModel {
 
 
-    private List<OrderItem> orderItems = new ArrayList<>();
+    private List<OrderItem> orderItems;
     private String orderDate;
-    private String orderStatus ;
+    private String orderStatus;
+    private BigDecimal amount;
+    private BigDecimal discount;
+    private PaymentMethod paymentMethod;
 
 
 }

@@ -14,7 +14,7 @@ import static java.lang.System.exit;
         private static final Logger logger = LoggerFactory.getLogger(SqlRepository.class);
         private static final Properties sqlCommands = new Properties();
 
-        // once for the whole run
+        // parse sql queries once for the whole run
         static {
             try (InputStream inputStream = SqlRepository.class.getClassLoader().getResourceAsStream(
                     "sql.properties")) {

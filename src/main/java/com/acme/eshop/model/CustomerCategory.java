@@ -5,16 +5,17 @@ import lombok.Setter;
 import lombok.ToString;
 import lombok.experimental.SuperBuilder;
 
-@Getter
-@Setter
-@ToString(callSuper = true)
-@SuperBuilder
-public class CustomerCategory  extends BaseModel {
+import java.math.BigDecimal;
 
 
-    private String categoryName;
-    private String description;
+public enum CustomerCategory {
 
 
+    B2C (BigDecimal.ZERO),
+    B2B(new BigDecimal(0.2)),
+    B2G(new BigDecimal(0.5));
 
+    CustomerCategory(BigDecimal discount) {
+
+    }
 }

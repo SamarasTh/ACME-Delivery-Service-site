@@ -5,14 +5,17 @@ import lombok.Setter;
 import lombok.ToString;
 import lombok.experimental.SuperBuilder;
 
+import java.math.BigDecimal;
+
 @Getter
 @Setter
-@ToString(callSuper = true)
-@SuperBuilder
-public class OrderItem  extends BaseModel {
+public class OrderItem  {
+    private  Long orderId;
+    private  Long productId;
+    private BigDecimal price;
+    private String name;
+    private String type;
 
-
-    private int quantity;
 
 
 }

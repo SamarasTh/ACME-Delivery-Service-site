@@ -1,6 +1,0 @@
-2022-07-21 11:23:36.049  INFO LT-70A4000-011 - [           main] c.a.e.AcmeApplication          : Hello world
-2022-07-21 11:23:36.056  INFO LT-70A4000-011 - [           main] c.a.e.AcmeApplication          : Hello world
-2022-07-21 11:23:36.056  INFO LT-70A4000-011 - [           main] c.a.e.AcmeApplication          : Hello world
-2022-07-21 11:23:36.056  WARN LT-70A4000-011 - [           main] c.a.e.AcmeApplication          : Hello world
-2022-07-21 17:18:01.834  INFO LT-70A4000-011 - [           main] c.a.e.s.DiscountServiceImpl    : Discount is: 50.0
-2022-07-21 17:21:16.698  INFO LT-70A4000-011 - [           main] c.a.e.s.DiscountServiceImpl    : Discount is: 50.0 %
