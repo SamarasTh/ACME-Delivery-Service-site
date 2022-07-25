@@ -1,32 +1,18 @@
 package com.acme.eshop.model;
 
-public class OrderItem extends Product {
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
+import lombok.experimental.SuperBuilder;
 
-    private int orderItemId;
+@Getter
+@Setter
+@ToString(callSuper = true)
+@SuperBuilder
+public class OrderItem  extends BaseModel {
+
+
     private int quantity;
 
-    public OrderItem(int orderItemId, int quantity) {
-        this.orderItemId = orderItemId;
-        this.quantity = quantity;
-    }
 
-    private OrderItem(){
-
-    }
-
-    public int getOrderItemId() {
-        return orderItemId;
-    }
-
-    public void setOrderItemId(int orderItemId) {
-        this.orderItemId = orderItemId;
-    }
-
-    public int getQuantity() {
-        return quantity;
-    }
-
-    public void setQuantity(int quantity) {
-        this.quantity = quantity;
-    }
 }

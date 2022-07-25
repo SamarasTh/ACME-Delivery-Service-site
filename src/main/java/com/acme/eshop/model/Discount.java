@@ -1,35 +1,20 @@
 package com.acme.eshop.model;
 
-public class Discount {
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
+import lombok.experimental.SuperBuilder;
 
-    private int discountId;
+@Getter
+@Setter
+@ToString(callSuper = true)
+@SuperBuilder
+public class Discount extends BaseModel {
+
+
     private double discountPercent;
 
 
-    public Discount(){
-
-    };
-
-    public Discount(int discountId,double discountPercent){
-        this.discountId =discountId;
-        this.discountPercent=discountPercent;
-    }
-
-    public int getDiscountId() {
-        return discountId;
-    }
-
-    public void setDiscountId(int discountId) {
-        this.discountId = discountId;
-    }
-
-    public void setDiscountPercent(double discountPercent) {
-        this.discountPercent = discountPercent;
-    }
-
-    public double getDiscountPercent() {
-        return discountPercent;
-    }
 
 
 }

@@ -1,33 +1,20 @@
 package com.acme.eshop.model;
 
-public class PaymentMethod extends Payment{
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
+import lombok.experimental.SuperBuilder;
 
-    private int paymentMethodId;
+@Getter
+@Setter
+@ToString(callSuper = true)
+@SuperBuilder
+public class PaymentMethod extends BaseModel{
+
+
     private String paymentType;
 
-    public PaymentMethod(int paymentMethodId, String paymentType) {
-        this.paymentMethodId = paymentMethodId;
-        this.paymentType = paymentType;
-    }
 
-    public PaymentMethod(){
-    }
-
-    public int getPaymentMethodId() {
-        return paymentMethodId;
-    }
-
-    public String getPaymentType() {
-        return paymentType;
-    }
-
-    public void setPaymentMethodId(int paymentMethodId) {
-        this.paymentMethodId = paymentMethodId;
-    }
-
-    public void setPaymentType(String paymentType) {
-        this.paymentType = paymentType;
-    }
 }
 
 
