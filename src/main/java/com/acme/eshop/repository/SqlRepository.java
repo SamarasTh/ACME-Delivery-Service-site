@@ -33,7 +33,7 @@ import static java.lang.System.exit;
             }
         }
 
-        private void SqlRepository() {
+        private  SqlRepository() {
         }
 
         public static String get(String commandKey) {

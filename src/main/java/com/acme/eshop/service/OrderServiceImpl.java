@@ -12,26 +12,27 @@ public class OrderServiceImpl implements OrderService {
     @Override
     public Order createOrder(List<Product> products, Customer customer, PaymentMethod paymentMethod) {
 
-        Order.builder()
+        Order order = Order.builder()
                 .orderDate((new Date()).toString())
                 .orderStatus("PENDING")
                 .build();
 
-        return null;
+        return order;
     }
 
     private BigDecimal calculateTotalPrice(List<Product> products) {
         BigDecimal productPrice = BigDecimal.ZERO;
-        for (Product product :products) {
-            productPrice.add(product.getPrice())  ;
+        for (Product product : products) {
+            productPrice.add(product.getPrice());
         }
-        return null;
+        return productPrice;
     }
 
-    private  BigDecimal calculateDiscount(CustomerCategory cc, PaymentMethod pm ){
+    private BigDecimal calculateDiscount(CustomerCategory cc, PaymentMethod pm) {
 
         BigDecimal pmDiscount = BigDecimal.valueOf(Double.valueOf(pm.name()));
         BigDecimal ccDiscount = BigDecimal.valueOf(Double.valueOf(cc.name()));
-        return pmDiscount.add(ccDiscount);
+        BigDecimal totalDiscount = pmDiscount.add(ccDiscount);
+        return totalDiscount;
     }
 }
