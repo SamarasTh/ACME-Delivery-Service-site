@@ -1,20 +1,17 @@
 package com.acme.eshop.model;
 
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
-import lombok.experimental.SuperBuilder;
+import javax.swing.*;
+import java.math.BigDecimal;
 
-@Getter
-@Setter
-@ToString(callSuper = true)
-@SuperBuilder
-public class PaymentMethod extends BaseModel{
+public enum PaymentMethod {
 
+    CASH ("0"),
+    CARD("0.15"),
+    WIRE_TRANSFER("0.10");
 
-    private String paymentType;
+    PaymentMethod(String discount) {
+    }
+
 
 
 }
-
-
