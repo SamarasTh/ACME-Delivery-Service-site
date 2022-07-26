@@ -4,9 +4,9 @@ import java.sql.SQLException;
 import java.util.List;
 import java.util.Optional;
 
-public interface CrudRepository <T, ID> {
+public interface CRUDRepository<T, ID> {
 
-    void create(T t) throws SQLException;
+    T create(T t) throws SQLException;
 
     List<T> findAll() throws SQLException;
 

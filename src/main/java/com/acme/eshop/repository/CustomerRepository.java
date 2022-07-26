@@ -10,15 +10,16 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
-public class CustomerRepository {
-    private static final Logger logger = (Logger) LoggerFactory.getLogger(CustomerRepository.class);
- //   @Override
+public class CustomerRepository implements CRUDRepository<Customer , Long> {
+    private static final Logger logger =  LoggerFactory.getLogger(CustomerRepository.class);
+
+    @Override
     public Customer create(Customer customer) throws SQLException {
         try (Connection connection = DataSource.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(
-                     SqlRepository.get("insert.table.student.000"), new String[]{"id"})) {
+                     SqlRepository.get("insert.table.customer.000"), new String[]{"id"})) {
 
-            logger.info("Creating student {}", customer);
+            logger.info("Creating customer {}", customer);
 
             preparedStatement.setString(1, customer.getName());
             preparedStatement.setString(2, customer.getAddress());
@@ -40,7 +41,7 @@ public class CustomerRepository {
 
     }
 
-   // @Override
+//    @Override
     public List<Customer> createAll(final Customer... customers) throws SQLException {
         try (Connection connection = DataSource.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(
@@ -161,7 +162,7 @@ public class CustomerRepository {
             int rowAffected = preparedStatement.executeUpdate();
             return rowAffected == 1;
         } catch (SQLException e) {
-            throw new SQLException("Could not delete student", e);
+            throw new SQLException("Could not delete customer", e);
         }
     }
 }

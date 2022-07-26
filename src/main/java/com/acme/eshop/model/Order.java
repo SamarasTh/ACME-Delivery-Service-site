@@ -18,7 +18,7 @@ public class Order extends BaseModel {
     private List<OrderItem> orderItems;
     private String orderDate;
     private String orderStatus;
-    private BigDecimal amount;
+    private BigDecimal price;
     private BigDecimal discount;
     private PaymentMethod paymentMethod;
 

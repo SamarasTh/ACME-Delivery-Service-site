@@ -1,6 +1,7 @@
 package com.acme.eshop;
 
 import com.acme.eshop.model.Customer;
+import com.acme.eshop.model.Order;
 import com.acme.eshop.model.Product;
 import com.acme.eshop.repository.SqlRepository;
 import com.acme.eshop.service.OrderServiceImpl;
@@ -14,40 +15,17 @@ public class AcmeApplication {
     private static final org.slf4j.Logger logger = LoggerFactory.getLogger(AcmeApplication.class);
     public static void main(String[] args) {
 
-         OrderServiceImpl   orderService;
-
-        AcmeApplication   acmeApplication = new AcmeApplication();
-        acmeApplication.customerCreation();
-        acmeApplication.productCreation();
+//         OrderServiceImpl   orderService;
+//
+//        AcmeApplication   acmeApplication = new AcmeApplication();
+//        acmeApplication.customerCreation();
+//        acmeApplication.productCreation();
 
     }
 
 
 
-    private List<Product> productCreation(){
 
-        List<Product> products = List.of(
-                Product.builder().name("Samsung A5").price(BigDecimal.valueOf(230.50)).type("Smartphone").build(),
-                Product.builder().name("Razer Deathadder").price(BigDecimal.valueOf(25.50)).type("Mouse").build(),
-                Product.builder().name("Hitachi AG43").price(BigDecimal.valueOf(230.50)).type("A/C").build(),
-                Product.builder().name("Samsung Galaxy S20").price(BigDecimal.valueOf(1000.10)).type("Smartphone").build(),
-                Product.builder().name("iPhone 13 Pro").price(BigDecimal.valueOf(1230)).type("Smartphone").build(),
-                Product.builder().name("Dell Inspiron 4450").price(BigDecimal.valueOf(650.50)).type("Laptop").build(),
-                Product.builder().name("Nikkon G54").price(BigDecimal.valueOf(230.50)).type("DSLR Camera").build(),
-                Product.builder().name("CoolerMaster Thrust").price(BigDecimal.valueOf(50)).type("Keyboard").build(),
-                Product.builder().name("GoPro 7").price(BigDecimal.valueOf(690)).type("Action Camera").build(),
-                Product.builder().name("Xiaomi SmartMic").price(BigDecimal.valueOf(260.50)).type("Microphone").build(),
-                Product.builder().name("Razer 34").price(BigDecimal.valueOf(150.12)).type("headset").build(),
-                Product.builder().name("Samsung A4").price(BigDecimal.valueOf(330.50)).type("Smartphone").build(),
-                Product.builder().name("iPhone 6").price(BigDecimal.valueOf(530.50)).type("Smartphone").build(),
-                Product.builder().name("RX570 Sapphire Nitro").price(BigDecimal.valueOf(330.50)).type("GPU").build()
-        );
-
-        for (final Product product: products )
-            logger.info("{}", product);
-
-        return products;
-    }
     private List<Customer> customerCreation() {
         // @formatter:off
         List<Customer> customers = List.of(
@@ -73,6 +51,36 @@ public class AcmeApplication {
         }
         return customers;
     }
+
+    private List<Product> productCreation(){
+
+        List<Product> products = List.of(
+                Product.builder().name("Samsung A5").price(BigDecimal.valueOf(230.50)).type("Smartphone").build(),
+                Product.builder().name("Razer Deathadder").price(BigDecimal.valueOf(25.50)).type("Mouse").build(),
+                Product.builder().name("Hitachi AG43").price(BigDecimal.valueOf(230.50)).type("A/C").build(),
+                Product.builder().name("Samsung Galaxy S20").price(BigDecimal.valueOf(1000.10)).type("Smartphone").build(),
+                Product.builder().name("iPhone 13 Pro").price(BigDecimal.valueOf(1230)).type("Smartphone").build(),
+                Product.builder().name("Dell Inspiron 4450").price(BigDecimal.valueOf(650.50)).type("Laptop").build(),
+                Product.builder().name("Nikkon G54").price(BigDecimal.valueOf(230.50)).type("DSLR Camera").build(),
+                Product.builder().name("CoolerMaster Thrust").price(BigDecimal.valueOf(50)).type("Keyboard").build(),
+                Product.builder().name("GoPro 7").price(BigDecimal.valueOf(690)).type("Action Camera").build(),
+                Product.builder().name("Xiaomi SmartMic").price(BigDecimal.valueOf(260.50)).type("Microphone").build(),
+                Product.builder().name("Razer 34").price(BigDecimal.valueOf(150.12)).type("headset").build(),
+                Product.builder().name("Samsung A4").price(BigDecimal.valueOf(330.50)).type("Smartphone").build(),
+                Product.builder().name("iPhone 6").price(BigDecimal.valueOf(530.50)).type("Smartphone").build(),
+                Product.builder().name("RX570 Sapphire Nitro").price(BigDecimal.valueOf(330.50)).type("GPU").build()
+        );
+
+        for (final Product product: products )
+            logger.info("{}", product);
+
+        return products;
+    }
+
+    private List<Order> orderCreation(){
+
+        return  null;
+    };
 
 
 

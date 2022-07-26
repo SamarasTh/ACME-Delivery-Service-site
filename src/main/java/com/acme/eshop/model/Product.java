@@ -13,7 +13,6 @@ import java.math.BigDecimal;
 @SuperBuilder
 public class Product extends BaseModel {
 
-
     private BigDecimal price;
     private String name;
     private String type;
