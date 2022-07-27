@@ -41,7 +41,7 @@ public class CustomerRepository implements CRUDRepository<Customer , Long> {
 
     }
 
-//    @Override
+    @Override
     public List<Customer> createAll(final Customer... customers) throws SQLException {
         try (Connection connection = DataSource.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(
@@ -70,7 +70,7 @@ public class CustomerRepository implements CRUDRepository<Customer , Long> {
         }
     }
 
-   // @Override
+    @Override
     public List<Customer> findAll() throws SQLException {
         try (Connection connection = DataSource.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(
@@ -80,7 +80,8 @@ public class CustomerRepository implements CRUDRepository<Customer , Long> {
 
             List<Customer> customerList = new ArrayList<>();
             while (resultSet.next()) {
-                Customer customer = Customer.builder().id(resultSet.getLong("id")).name(resultSet.getString("name"))
+                Customer customer = Customer.builder().id(resultSet.getLong("id"))
+                        .name(resultSet.getString("name"))
                         .address(resultSet.getString("address"))
                         .username(resultSet.getString("username"))
                         .password(resultSet.getString("password"))
@@ -98,7 +99,7 @@ public class CustomerRepository implements CRUDRepository<Customer , Long> {
         }
     }
 
-  //  @Override
+    @Override
     public Optional<Customer> findByID(Long id) throws SQLException {
         try (Connection connection = DataSource.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(
@@ -110,7 +111,8 @@ public class CustomerRepository implements CRUDRepository<Customer , Long> {
             ResultSet resultSet = preparedStatement.executeQuery();
 
             if (resultSet.next()) {
-                return Optional.of(Customer.builder().id(resultSet.getLong("id")).name(resultSet.getString("name"))
+                return Optional.of(Customer.builder().id(resultSet.getLong("id"))
+                        .name(resultSet.getString("name"))
                         .address(resultSet.getString("address"))
                         .username(resultSet.getString("username"))
                         .password(resultSet.getString("password"))
@@ -126,7 +128,7 @@ public class CustomerRepository implements CRUDRepository<Customer , Long> {
 
     }
 
- //   @Override
+    @Override
     public boolean update(Customer customer) throws SQLException {
         try (Connection connection = DataSource.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(
@@ -149,7 +151,7 @@ public class CustomerRepository implements CRUDRepository<Customer , Long> {
         }
     }
 
- //   @Override
+    @Override
     public boolean delete(Customer customer) throws SQLException {
         try (Connection connection = DataSource.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(

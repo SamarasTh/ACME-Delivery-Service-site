@@ -21,6 +21,11 @@ public class ProductServiceImpl implements CRUDRepository {
     }
 
     @Override
+    public List createAll(Object[] objects) throws SQLException {
+        return null;
+    }
+
+    @Override
     public List findAll() throws SQLException {
         return null;
     }

@@ -8,6 +8,8 @@ public interface CRUDRepository<T, ID> {
 
     T create(T t) throws SQLException;
 
+    List<T> createAll(T... ts) throws SQLException;
+
     List<T> findAll() throws SQLException;
 
     Optional<T> findByID(ID id) throws SQLException;
@@ -15,4 +17,6 @@ public interface CRUDRepository<T, ID> {
     boolean update(T t) throws SQLException;
 
     boolean delete(T t) throws SQLException;
+
+
 }
