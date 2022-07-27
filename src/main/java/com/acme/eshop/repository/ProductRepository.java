@@ -35,7 +35,7 @@ public class ProductRepository implements CRUDRepository<Product, Long> {
 
             // set  id
             ResultSet generatedKeys = preparedStatement.getGeneratedKeys();
-            generatedKeys.next(); // we only suppose that there is a single generated key
+            generatedKeys.next();
             product.setId(generatedKeys.getLong(1));
 
             return product;
@@ -68,6 +68,11 @@ public class ProductRepository implements CRUDRepository<Product, Long> {
         } catch (SQLException e) {
             throw new SQLException("Could not create all products", e);
         }
+    }
+
+    @Override
+    public List<Customer> createAll(Customer... customers) throws SQLException {
+        return null;
     }
 
     @Override

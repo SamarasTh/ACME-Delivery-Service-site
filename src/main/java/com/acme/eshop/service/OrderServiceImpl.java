@@ -68,4 +68,9 @@ public class OrderServiceImpl implements OrderService {
                 .type(product.getType())
                 .build();
     }
+
+    private BigDecimal saveOrder(Order order){
+
+        return null;
+    }
 }

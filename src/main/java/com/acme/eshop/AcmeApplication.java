@@ -2,6 +2,7 @@ package com.acme.eshop;
 
 import com.acme.eshop.model.Customer;
 import com.acme.eshop.model.Order;
+import com.acme.eshop.model.PaymentMethod;
 import com.acme.eshop.model.Product;
 import com.acme.eshop.repository.SqlRepository;
 import com.acme.eshop.service.OrderServiceImpl;
@@ -13,6 +14,7 @@ import java.util.List;
 public class AcmeApplication {
 
     private static final org.slf4j.Logger logger = LoggerFactory.getLogger(AcmeApplication.class);
+
     public static void main(String[] args) {
 
 //         OrderServiceImpl   orderService;
@@ -22,8 +24,6 @@ public class AcmeApplication {
 //        acmeApplication.productCreation();
 
     }
-
-
 
 
     private List<Customer> customerCreation() {
@@ -52,7 +52,7 @@ public class AcmeApplication {
         return customers;
     }
 
-    private List<Product> productCreation(){
+    private List<Product> productCreation() {
 
         List<Product> products = List.of(
                 Product.builder().name("Samsung A5").price(BigDecimal.valueOf(230.50)).type("Smartphone").build(),
@@ -71,17 +71,33 @@ public class AcmeApplication {
                 Product.builder().name("RX570 Sapphire Nitro").price(BigDecimal.valueOf(330.50)).type("GPU").build()
         );
 
-        for (final Product product: products )
+        for (final Product product : products)
             logger.info("{}", product);
 
         return products;
     }
 
-    private List<Order> orderCreation(){
+    private List<Order> orderCreation() {
+        List<Order> orders = List.of(
+                Order.builder().orderDate("22-05-22").orderStatus("completed").price(BigDecimal.valueOf(660.10)).discount(BigDecimal.valueOf(0.10)).build(),
+                Order.builder().orderDate("22-05-22").orderStatus("completed").price(BigDecimal.valueOf(3152.10)).discount(BigDecimal.valueOf(0.25)).build(),
+                Order.builder().orderDate("22-05-22").orderStatus("completed").price(BigDecimal.valueOf(2111.10)).discount(BigDecimal.valueOf(0.25)).build(),
+                Order.builder().orderDate("22-05-22").orderStatus("completed").price(BigDecimal.valueOf(1500.10)).discount(BigDecimal.valueOf(0.20)).build(),
+                Order.builder().orderDate("22-05-22").orderStatus("completed").price(BigDecimal.valueOf(989.10)).discount(BigDecimal.valueOf(0.55)).build(),
+                Order.builder().orderDate("22-05-22").orderStatus("completed").price(BigDecimal.valueOf(765.10)).discount(BigDecimal.valueOf(0.65)).build(),
+                Order.builder().orderDate("22-05-22").orderStatus("completed").price(BigDecimal.valueOf(765.10)).discount(BigDecimal.valueOf(0.35)).build(),
+                Order.builder().orderDate("22-05-22").orderStatus("completed").price(BigDecimal.valueOf(899.10)).discount(BigDecimal.valueOf(0.15)).build(),
+                Order.builder().orderDate("22-05-22").orderStatus("completed").price(BigDecimal.valueOf(987.10)).discount(BigDecimal.valueOf(0.15)).build(),
+                Order.builder().orderDate("22-05-22").orderStatus("completed").price(BigDecimal.valueOf(788.10)).discount(BigDecimal.valueOf(0.15)).build(),
+                Order.builder().orderDate("22-05-22").orderStatus("completed").price(BigDecimal.valueOf(1000.10)).discount(BigDecimal.valueOf(0.35)).build(),
+                Order.builder().orderDate("22-05-22").orderStatus("completed").price(BigDecimal.valueOf(678.10)).discount(BigDecimal.valueOf(0.45)).build(),
+                Order.builder().orderDate("22-05-22").orderStatus("completed").price(BigDecimal.valueOf(250.23)).discount(BigDecimal.valueOf(0.50)).build()
+        );
 
-        return  null;
-    };
+        for (final Order order : orders)
+            logger.info("{}", order);
 
-
-
+        return orders;
+    }
+    
 }
