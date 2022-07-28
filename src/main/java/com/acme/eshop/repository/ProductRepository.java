@@ -17,7 +17,7 @@ import java.util.Optional;
 
 public class ProductRepository implements CRUDRepository<Product, Long> {
 
-    private static final Logger logger = LoggerFactory.getLogger(ProductRepository.class);
+    private final Logger logger = LoggerFactory.getLogger(getClass());
 
     @Override
     public Product create(Product product) throws SQLException {
@@ -52,8 +52,7 @@ public class ProductRepository implements CRUDRepository<Product, Long> {
 
             logger.info("Creating all products (size={})", products.length);
 
-            for (Product product : products)
-            {
+            for (Product product : products) {
                 preparedStatement.setString(1, product.getName());
                 preparedStatement.setString(2, product.getType());
                 preparedStatement.setBigDecimal(3, product.getPrice());

@@ -2,10 +2,8 @@ package com.acme.eshop;
 
 import com.acme.eshop.model.Customer;
 import com.acme.eshop.model.Order;
-import com.acme.eshop.model.PaymentMethod;
 import com.acme.eshop.model.Product;
-import com.acme.eshop.repository.SqlRepository;
-import com.acme.eshop.service.OrderServiceImpl;
+import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.math.BigDecimal;
@@ -13,7 +11,7 @@ import java.util.List;
 
 public class AcmeApplication {
 
-    private  final org.slf4j.Logger logger = LoggerFactory.getLogger(getClass());
+    private final Logger logger = LoggerFactory.getLogger(getClass());
 
     public static void main(String[] args) {
 
@@ -99,5 +97,5 @@ public class AcmeApplication {
 
         return orders;
     }
-    
+
 }

@@ -14,7 +14,7 @@ import java.util.Optional;
 @AllArgsConstructor
 public class CustomerServiceImpl implements CustomerService {
     private final CustomerRepository customerRepository ;
-    private static final Logger logger = LoggerFactory.getLogger(CustomerServiceImpl.class);
+    private  final Logger logger = LoggerFactory.getLogger(getClass());
 
     private  List<Customer> saveCustomers(List<Customer> customers) {
         try {

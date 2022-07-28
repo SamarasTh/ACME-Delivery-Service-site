@@ -1,7 +1,5 @@
 package com.acme.eshop.repository;
 
-import com.acme.eshop.model.Customer;
-import com.acme.eshop.model.CustomerCategory;
 import com.acme.eshop.model.Order;
 import com.acme.eshop.model.PaymentMethod;
 import org.slf4j.Logger;
@@ -16,8 +14,9 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
-public class OrderRepository implements CRUDRepository<Order, Long>{
+public class OrderRepository implements CRUDRepository<Order, Long> {
     private static final Logger logger = LoggerFactory.getLogger(OrderRepository.class);
+
     @Override
     public Order create(Order order) throws SQLException {
         try (Connection connection = DataSource.getConnection();
@@ -41,7 +40,8 @@ public class OrderRepository implements CRUDRepository<Order, Long>{
             return order;
         } catch (SQLException e) {
             throw new SQLException("Could not create Order", e);
-        }    }
+        }
+    }
 
     @Override
     public List<Order> createAll(Order... orders) throws SQLException {
@@ -51,8 +51,7 @@ public class OrderRepository implements CRUDRepository<Order, Long>{
 
             logger.info("Creating all orders (size={})", orders.length);
 
-            for (Order order : orders)
-            {
+            for (Order order : orders) {
                 preparedStatement.setString(1, order.getOrderDate());
                 preparedStatement.setString(2, order.getOrderStatus());
                 preparedStatement.setBigDecimal(3, order.getPrice());
