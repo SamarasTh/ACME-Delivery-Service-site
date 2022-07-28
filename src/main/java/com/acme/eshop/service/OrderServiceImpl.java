@@ -1,6 +1,7 @@
 package com.acme.eshop.service;
 
 import com.acme.eshop.model.*;
+import com.acme.eshop.repository.OrderItemRepository;
 import com.acme.eshop.repository.OrderRepository;
 import lombok.AllArgsConstructor;
 import org.slf4j.Logger;
@@ -11,10 +12,13 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 @AllArgsConstructor
 public class OrderServiceImpl implements OrderService {
     private final OrderRepository orderRepository;
+    private final OrderItemRepository orderItemRepository;
+    private final OrderServiceImpl orderService;
     private final Logger logger = LoggerFactory.getLogger(getClass());
 
     @Override
@@ -22,11 +26,26 @@ public class OrderServiceImpl implements OrderService {
 
         Order order = Order.builder()
                 .orderDate((new Date()).toString())
-                .orderStatus("PENDING")
+                .orderStatus("Order Pending")
                 .price(calculatePriceAfterDiscount(products, customer.getCustomerCategory(), paymentMethod))
                 .discount(calculateDiscount(customer.getCustomerCategory(), paymentMethod))
                 .paymentMethod(paymentMethod)
                 .build();
+
+        Long orderId = orderService.saveOrder(order);
+
+        List<OrderItem> orderItems = convertProductsToOrderItems(products,orderId);
+
+        orderItems.stream().forEach(orderItem -> {
+            try {
+                orderItemRepository.create(orderItem);
+            } catch (SQLException e) {
+                logger.trace("An error occurred while saving the Order, please try again ");
+                throw new RuntimeException(e);
+            }
+        });
+
+
         return order;
     }
 
@@ -77,11 +96,10 @@ public class OrderServiceImpl implements OrderService {
     }
 
     private Long saveOrder(Order order) {
-        OrderServiceImpl orderService = null;
+
         try {
             orderRepository.create(order);
-
-            Long orderId = orderService.saveOrder(order);
+            Long orderId = order.getId();
             return orderId;
         } catch (SQLException e) {
             logger.info("An error occurred while saving the order to database");

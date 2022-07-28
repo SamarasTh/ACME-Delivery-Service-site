@@ -19,7 +19,7 @@ public class CustomerRepository implements CRUDRepository<Customer , Long> {
              PreparedStatement preparedStatement = connection.prepareStatement(
                      SqlRepository.get("insert.table.customer.000"), new String[]{"id"})) {
 
-            logger.info("Creating customer {}", customer);
+            logger.info("Creating  {}", customer);
 
             preparedStatement.setString(1, customer.getName());
             preparedStatement.setString(2, customer.getAddress());
@@ -31,7 +31,7 @@ public class CustomerRepository implements CRUDRepository<Customer , Long> {
 
             // setting id
             ResultSet generatedKeys = preparedStatement.getGeneratedKeys();
-            generatedKeys.next(); // we only suppose that there is a single generated key
+            generatedKeys.next();
             customer.setId(generatedKeys.getLong(1));
 
             return customer;

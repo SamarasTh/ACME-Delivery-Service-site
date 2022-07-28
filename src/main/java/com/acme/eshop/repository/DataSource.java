@@ -13,8 +13,8 @@ public class DataSource {
     private final Logger logger = LoggerFactory.getLogger(getClass());
     private static final String DB_URL = "jdbc:oracle:thin:@//localhost:1521/XEPDB1";
 
-    private static final String USERNAME = "sys";
-    private static final String PASSWORD = "pass";
+    private static final String USERNAME = "thanos";
+    private static final String PASSWORD = "pass1311";
 
     private static final HikariDataSource hikariDataSource;
 

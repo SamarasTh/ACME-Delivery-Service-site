@@ -1,8 +1,12 @@
 package com.acme.eshop;
 
-import com.acme.eshop.model.Customer;
-import com.acme.eshop.model.Order;
-import com.acme.eshop.model.Product;
+import com.acme.eshop.model.*;
+import com.acme.eshop.repository.CustomerRepository;
+import com.acme.eshop.repository.OrderItemRepository;
+import com.acme.eshop.repository.OrderRepository;
+import com.acme.eshop.repository.SqlRepository;
+import com.acme.eshop.service.CustomerServiceImpl;
+import com.acme.eshop.service.OrderServiceImpl;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -10,27 +14,41 @@ import java.math.BigDecimal;
 import java.util.List;
 
 public class AcmeApplication {
-
-    private final Logger logger = LoggerFactory.getLogger(getClass());
+    private static final CustomerServiceImpl customerService = new CustomerServiceImpl(new CustomerRepository());
+    //    private static final OrderServiceImpl orderService = new OrderServiceImpl();
+    private static final Logger logger = LoggerFactory.getLogger(AcmeApplication.class);
 
     public static void main(String[] args) {
 
-//         OrderServiceImpl   orderService;
-//
-//        AcmeApplication   acmeApplication = new AcmeApplication();
-//        acmeApplication.customerCreation();
-//        acmeApplication.productCreation();
+
+        SqlRepository sqlRepository = new SqlRepository();
+        sqlRepository.dropAndCreateTables();
+        logger.info("Tables are created");
+
+        List<Customer> customers = customerCreation();
+        logger.info("Customers are created");
+
+        List<Order> orders = orderCreation();
+        logger.info("Orders are created");
+
+        List<Product> products = productCreation();
+        logger.info("Products are created");
+
+        List<Customer> savedCustomers = customerService.saveCustomers(customers);
+//        logger.info("Customers are now saved to DB");
+
+//        List<Product> savedProducts = productService.saveProduct(products);
 
     }
 
 
-    private List<Customer> customerCreation() {
+    private static List<Customer> customerCreation() {
         // @formatter:off
         List<Customer> customers = List.of(
-                Customer.builder().name("Thanos Sam").username("Nossam").password("1231123").address("Venizelou 12").email("test@test.com").build(),
-                Customer.builder().name("Argiris").username("Argy").password("5645435345").address("Venizelou 13").email("notest@test.com").build(),
-                Customer.builder().name("Nikos").username("NikTheGreek").password("345345").address("Venizelou 14").email("dummy@test.com").build(),
-                Customer.builder().name("Maria").username("Marion123").password("1231").address("Venizelou 15").email("sandbox@test.com").build(),
+                Customer.builder().name("Thanos Sam").username("Nossam").password("1231123").address("Venizelou 12").email("test@test.com").customerCategory(CustomerCategory.B2B).build(),
+                Customer.builder().name("Argiris").username("Argy").password("5645435345").address("Venizelou 13").email("notest@test.com").customerCategory(CustomerCategory.B2G).build(),
+                Customer.builder().name("Nikos").username("NikTheGreek").password("345345").address("Venizelou 14").email("dummy@test.com").customerCategory(CustomerCategory.B2C).build(),
+                Customer.builder().name("Maria").username("Marion123").password("1231").address("Venizelou 15").email("sandbox@test.com").customerCategory(CustomerCategory.B2G).build(),
                 Customer.builder().name("Dimitra").username("Dimi").password("678678").address("Venizelou 16").email("noemail@test.com").build(),
                 Customer.builder().name("Euagelia").username("Eua123").password("12fdsfd31123").address("Venizelou 17").email("emailname@test.com").build(),
                 Customer.builder().name("Viktoria").username("Vik").password("fhh45345").address("Venizelou 18").email("emailer@test.com").build(),
@@ -50,7 +68,7 @@ public class AcmeApplication {
         return customers;
     }
 
-    private List<Product> productCreation() {
+    private static List<Product> productCreation() {
 
         List<Product> products = List.of(
                 Product.builder().name("Samsung A5").price(BigDecimal.valueOf(230.50)).type("Smartphone").build(),
@@ -75,7 +93,7 @@ public class AcmeApplication {
         return products;
     }
 
-    private List<Order> orderCreation() {
+    private static List<Order> orderCreation() {
         List<Order> orders = List.of(
                 Order.builder().orderDate("22-05-22").orderStatus("completed").price(BigDecimal.valueOf(660.10)).discount(BigDecimal.valueOf(0.10)).build(),
                 Order.builder().orderDate("22-05-22").orderStatus("completed").price(BigDecimal.valueOf(3152.10)).discount(BigDecimal.valueOf(0.25)).build(),
@@ -97,5 +115,6 @@ public class AcmeApplication {
 
         return orders;
     }
+
 
 }

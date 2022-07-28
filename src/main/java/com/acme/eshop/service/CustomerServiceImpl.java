@@ -16,7 +16,7 @@ public class CustomerServiceImpl implements CustomerService {
     private final CustomerRepository customerRepository ;
     private  final Logger logger = LoggerFactory.getLogger(getClass());
 
-    private  List<Customer> saveCustomers(List<Customer> customers) {
+    public List<Customer> saveCustomers(List<Customer> customers) {
         try {
             for (final Customer customer : customers) {
                 customerRepository.create(customer);
