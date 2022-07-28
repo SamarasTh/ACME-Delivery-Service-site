@@ -36,6 +36,7 @@ public class CustomerRepository implements CRUDRepository<Customer , Long> {
 
             return customer;
         } catch (SQLException e) {
+            logger.info("failed to create {}", customer);
             throw new SQLException("Could not create customer", e);
         }
 
@@ -86,8 +87,9 @@ public class CustomerRepository implements CRUDRepository<Customer , Long> {
                         .username(resultSet.getString("username"))
                         .password(resultSet.getString("password"))
                         .email(resultSet.getString("email"))
-                        .customerCategory(CustomerCategory.valueOf(resultSet.getString("customerCategory")))
+                        .customerCategory(CustomerCategory.valueOf(resultSet.getString("category")))
                         .build();
+//                String customerCategory = resultSet.getString("category");
                 customerList.add(customer);
             }
 

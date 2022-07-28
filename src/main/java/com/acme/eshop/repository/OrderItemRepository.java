@@ -20,7 +20,7 @@ public class OrderItemRepository implements CRUDRepository<OrderItem, Long> {
     public OrderItem create(OrderItem orderItem) throws SQLException {
         try (Connection connection = DataSource.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(
-                     SqlRepository.get("insert.table.orderItem.000"), new String[]{"id"})) {
+                     SqlRepository.get("insert.table.order_item.000"), new String[]{"id"})) {
 
             logger.info("Creating orderItem {}", orderItem);
 
@@ -30,13 +30,6 @@ public class OrderItemRepository implements CRUDRepository<OrderItem, Long> {
             preparedStatement.setString(4, orderItem.getName());
             preparedStatement.setString(5, orderItem.getType());
             preparedStatement.executeUpdate();
-
-            // set  id
-            ResultSet generatedKeys = preparedStatement.getGeneratedKeys();
-            generatedKeys.next();
-            // orderItem.setOrderId(generatedKeys.getLong(1));
-            // orderItem.setProductId(generatedKeys.getLong(1));
-//            orderItem.setId(generatedKeys.getLong(1));
 
             return orderItem;
         } catch (SQLException e) {

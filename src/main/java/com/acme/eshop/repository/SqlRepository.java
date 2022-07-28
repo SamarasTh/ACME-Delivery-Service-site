@@ -43,8 +43,11 @@ public class SqlRepository {
     public static String get(String command) {
         return sqlCommands.getProperty(command);
     }
+
     private static void runSqlTableCommands(String command, boolean dropped) {
-        try (Connection connection = DataSource.getConnection(); Statement stmt = connection.createStatement()) {
+        try (Connection connection = DataSource.getConnection();
+             Statement stmt = connection.createStatement()) {
+            stmt.executeUpdate(command);
             logger.info("{} table command was successful.", dropped ? "Drop" : "Create");
         } catch (SQLException ex) {
             if (dropped = true) {
@@ -55,21 +58,24 @@ public class SqlRepository {
             }
         }
     }
+
     private static void createTables() {
 
         List.of(
-                SqlRepository.get("create.table.customer"),
-                SqlRepository.get("create.table.product"),
-                SqlRepository.get("create.table.order"),
-                SqlRepository.get("create.table.order_item")).forEach(c-> runSqlTableCommands(c, false));
+                        SqlRepository.get("create.table.customer"),
+                        SqlRepository.get("create.table.product"),
+                        SqlRepository.get("create.table.order"),
+                        SqlRepository.get("create.table.order_item"))
+                .forEach(c -> runSqlTableCommands(c, false));
     }
 
     private static void dropTables() {
 
         List.of(SqlRepository.get("drop.table.customer"),
-                SqlRepository.get("drop.table.product"),
-                SqlRepository.get("drop.table.order"),
-                SqlRepository.get("drop.table.order_item")).forEach(c-> runSqlTableCommands(c, true));
+                        SqlRepository.get("drop.table.product"),
+                        SqlRepository.get("drop.table.order"),
+                        SqlRepository.get("drop.table.order_item"))
+                .forEach(c -> runSqlTableCommands(c, true));
 
     }
 

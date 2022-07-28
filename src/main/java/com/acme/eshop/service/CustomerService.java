@@ -8,6 +8,6 @@ import java.util.List;
 
 public interface CustomerService {
 
-
+    List<Customer> saveCustomers(List<Customer> customers);
 
 }

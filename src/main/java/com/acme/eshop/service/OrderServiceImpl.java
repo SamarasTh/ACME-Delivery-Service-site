@@ -12,13 +12,13 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.Optional;
+
 
 @AllArgsConstructor
 public class OrderServiceImpl implements OrderService {
     private final OrderRepository orderRepository;
     private final OrderItemRepository orderItemRepository;
-    private final OrderServiceImpl orderService;
+
     private final Logger logger = LoggerFactory.getLogger(getClass());
 
     @Override
@@ -32,10 +32,10 @@ public class OrderServiceImpl implements OrderService {
                 .paymentMethod(paymentMethod)
                 .build();
 
-        Long orderId = orderService.saveOrder(order);
+        Long orderId = saveOrder(order);
 
-        List<OrderItem> orderItems = convertProductsToOrderItems(products,orderId);
-
+        List<OrderItem> orderItems = convertProductsToOrderItems(products, orderId);
+        order.setOrderItems(orderItems);
         orderItems.stream().forEach(orderItem -> {
             try {
                 orderItemRepository.create(orderItem);
@@ -68,8 +68,8 @@ public class OrderServiceImpl implements OrderService {
 
     private BigDecimal calculateDiscount(CustomerCategory cc, PaymentMethod pm) {
 
-        BigDecimal pmDiscount = BigDecimal.valueOf(Double.valueOf(pm.name()));
-        BigDecimal ccDiscount = BigDecimal.valueOf(Double.valueOf(cc.name()));
+        BigDecimal pmDiscount = pm.getDiscount();
+        BigDecimal ccDiscount = cc.getDiscount();
         BigDecimal totalDiscount = pmDiscount.add(ccDiscount);
         return totalDiscount;
     }
@@ -98,11 +98,10 @@ public class OrderServiceImpl implements OrderService {
     private Long saveOrder(Order order) {
 
         try {
-            orderRepository.create(order);
-            Long orderId = order.getId();
-            return orderId;
+            Order orderResult = orderRepository.create(order);
+            return orderResult.getId();
         } catch (SQLException e) {
-            logger.info("An error occurred while saving the order to database");
+            logger.info("An error occurred while saving the order to database", e);
         }
 
         return null;
