@@ -17,7 +17,7 @@ import java.util.Optional;
 
 public class ProductRepository implements CRUDRepository<Product, Long> {
 
-    private final Logger logger = LoggerFactory.getLogger(getClass());
+    private static final Logger logger = LoggerFactory.getLogger(ProductRepository.class);
 
     @Override
     public Product create(Product product) throws SQLException {

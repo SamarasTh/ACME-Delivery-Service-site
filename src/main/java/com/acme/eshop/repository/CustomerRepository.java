@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.Optional;
 
 public class CustomerRepository implements CRUDRepository<Customer , Long> {
-    private  final Logger logger = LoggerFactory.getLogger(getClass());
+    private static final Logger logger = LoggerFactory.getLogger(CustomerRepository.class);
 
     @Override
     public Customer create(Customer customer) throws SQLException {
