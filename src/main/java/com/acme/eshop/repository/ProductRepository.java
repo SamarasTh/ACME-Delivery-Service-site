@@ -70,8 +70,6 @@ public class ProductRepository implements CRUDRepository<Product, Long> {
         }
     }
 
-
-
     @Override
     public List<Product> findAll() throws SQLException {
         try (Connection connection = DataSource.getConnection();
