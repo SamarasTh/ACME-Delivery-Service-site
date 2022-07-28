@@ -70,10 +70,7 @@ public class ProductRepository implements CRUDRepository<Product, Long> {
         }
     }
 
-    @Override
-    public List<Customer> createAll(Customer... customers) throws SQLException {
-        return null;
-    }
+
 
     @Override
     public List<Product> findAll() throws SQLException {

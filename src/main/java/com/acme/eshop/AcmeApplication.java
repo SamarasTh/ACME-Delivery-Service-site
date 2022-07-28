@@ -13,7 +13,7 @@ import java.util.List;
 
 public class AcmeApplication {
 
-    private static final org.slf4j.Logger logger = LoggerFactory.getLogger(AcmeApplication.class);
+    private  final org.slf4j.Logger logger = LoggerFactory.getLogger(getClass());
 
     public static void main(String[] args) {
 

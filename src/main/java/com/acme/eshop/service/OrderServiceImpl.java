@@ -1,14 +1,21 @@
 package com.acme.eshop.service;
 
 import com.acme.eshop.model.*;
+import com.acme.eshop.repository.OrderRepository;
+import lombok.AllArgsConstructor;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.math.BigDecimal;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+@AllArgsConstructor
 public class OrderServiceImpl implements OrderService {
-
+    private final OrderRepository orderRepository;
+    private final Logger logger = LoggerFactory.getLogger(getClass());
 
     @Override
     public Order createOrder(List<Product> products, Customer customer, PaymentMethod paymentMethod) {
@@ -16,7 +23,7 @@ public class OrderServiceImpl implements OrderService {
         Order order = Order.builder()
                 .orderDate((new Date()).toString())
                 .orderStatus("PENDING")
-                .price(calculatePriceAfterDiscount(products, customer.getCustomerCategory() , paymentMethod ))
+                .price(calculatePriceAfterDiscount(products, customer.getCustomerCategory(), paymentMethod))
                 .discount(calculateDiscount(customer.getCustomerCategory(), paymentMethod))
                 .paymentMethod(paymentMethod)
                 .build();
@@ -48,17 +55,17 @@ public class OrderServiceImpl implements OrderService {
         return totalDiscount;
     }
 
-    private List<OrderItem>  convertProductsToOrderItems(List<Product> products, Long orderId){
-        List<OrderItem> orderItems  = new ArrayList<>();
-        products.stream().forEach( product -> {
-                orderItems.add(convertProductToOrderItem(product, orderId)) ;
-            });
+    private List<OrderItem> convertProductsToOrderItems(List<Product> products, Long orderId) {
+        List<OrderItem> orderItems = new ArrayList<>();
+        products.stream().forEach(product -> {
+            orderItems.add(convertProductToOrderItem(product, orderId));
+        });
 
 
         return orderItems;
     }
 
-    private OrderItem convertProductToOrderItem(Product product, Long orderId){
+    private OrderItem convertProductToOrderItem(Product product, Long orderId) {
 
         return OrderItem.builder()
                 .orderId(orderId)
@@ -69,8 +76,19 @@ public class OrderServiceImpl implements OrderService {
                 .build();
     }
 
-    private BigDecimal saveOrder(Order order){
+    private Long saveOrder(Order order) {
+        OrderServiceImpl orderService = null;
+        try {
+            orderRepository.create(order);
+
+            Long orderId = orderService.saveOrder(order);
+            return orderId;
+        } catch (SQLException e) {
+            logger.info("An error occurred while saving the order to database");
+        }
 
         return null;
     }
+
+
 }

@@ -12,7 +12,7 @@ public interface CRUDRepository<T, ID> {
 
     List<T> createAll(T... ts) throws SQLException;
 
-    List<Customer> createAll(Customer... customers) throws SQLException;
+//    List<Customer> createAll(Customer... customers) throws SQLException;
 
     List<T> findAll() throws SQLException;
 
