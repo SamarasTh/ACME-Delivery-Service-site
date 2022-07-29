@@ -107,27 +107,5 @@ public class Utils {
         return products;
     }
 
-//    private static List<Order> orderCreation() {
-//        List<Order> orders = List.of(
-//                Order.builder().orderDate("22-05-22").orderStatus("completed").price(BigDecimal.valueOf(660.10)).discount(BigDecimal.valueOf(0.10)).build(),
-//                Order.builder().orderDate("22-05-22").orderStatus("completed").price(BigDecimal.valueOf(3152.10)).discount(BigDecimal.valueOf(0.25)).build(),
-//                Order.builder().orderDate("22-05-22").orderStatus("completed").price(BigDecimal.valueOf(2111.10)).discount(BigDecimal.valueOf(0.25)).build(),
-//                Order.builder().orderDate("22-05-22").orderStatus("completed").price(BigDecimal.valueOf(1500.10)).discount(BigDecimal.valueOf(0.20)).build(),
-//                Order.builder().orderDate("22-05-22").orderStatus("completed").price(BigDecimal.valueOf(989.10)).discount(BigDecimal.valueOf(0.55)).build(),
-//                Order.builder().orderDate("22-05-22").orderStatus("completed").price(BigDecimal.valueOf(765.10)).discount(BigDecimal.valueOf(0.65)).build(),
-//                Order.builder().orderDate("22-05-22").orderStatus("completed").price(BigDecimal.valueOf(765.10)).discount(BigDecimal.valueOf(0.35)).build(),
-//                Order.builder().orderDate("22-05-22").orderStatus("completed").price(BigDecimal.valueOf(899.10)).discount(BigDecimal.valueOf(0.15)).build(),
-//                Order.builder().orderDate("22-05-22").orderStatus("completed").price(BigDecimal.valueOf(987.10)).discount(BigDecimal.valueOf(0.15)).build(),
-//                Order.builder().orderDate("22-05-22").orderStatus("completed").price(BigDecimal.valueOf(788.10)).discount(BigDecimal.valueOf(0.15)).build(),
-//                Order.builder().orderDate("22-05-22").orderStatus("completed").price(BigDecimal.valueOf(1000.10)).discount(BigDecimal.valueOf(0.35)).build(),
-//                Order.builder().orderDate("22-05-22").orderStatus("completed").price(BigDecimal.valueOf(678.10)).discount(BigDecimal.valueOf(0.45)).build(),
-//                Order.builder().orderDate("22-05-22").orderStatus("completed").price(BigDecimal.valueOf(250.23)).discount(BigDecimal.valueOf(0.50)).build()
-//        );
-//
-//        for (final Order order : orders)
-//            logger.info("{}", order);
-//
-//        return orders;
-//    }
 
 }

@@ -24,13 +24,7 @@ public class OrderServiceImpl implements OrderService {
     @Override
     public Order createOrder(List<Product> products, Customer customer, PaymentMethod paymentMethod) {
 
-        Order order = Order.builder()
-                .orderDate((new Date()).toString())
-                .orderStatus("Order Pending")
-                .price(calculatePriceAfterDiscount(products, customer.getCustomerCategory(), paymentMethod))
-                .discount(calculateDiscount(customer.getCustomerCategory(), paymentMethod))
-                .paymentMethod(paymentMethod)
-                .build();
+        Order order = Order.builder().orderDate((new Date()).toString()).orderStatus("Order Pending").price(calculatePriceAfterDiscount(products, customer.getCustomerCategory(), paymentMethod)).discount(calculateDiscount(customer.getCustomerCategory(), paymentMethod)).paymentMethod(paymentMethod).build();
 
         Long orderId = saveOrder(order);
 
@@ -49,7 +43,8 @@ public class OrderServiceImpl implements OrderService {
         return order;
     }
 
-    private BigDecimal calculatePriceAfterDiscount(List<Product> products, CustomerCategory cc, PaymentMethod pm) {
+    @Override
+    public BigDecimal calculatePriceAfterDiscount(List<Product> products, CustomerCategory cc, PaymentMethod pm) {
         BigDecimal discount = calculateDiscount(cc, pm);
         BigDecimal priceBeforeDiscount = calculatePriceBeforeDiscount(products);
         BigDecimal priceAfterDiscount = priceBeforeDiscount.subtract(priceBeforeDiscount.multiply(discount));
@@ -57,7 +52,8 @@ public class OrderServiceImpl implements OrderService {
         return priceAfterDiscount;
     }
 
-    private BigDecimal calculatePriceBeforeDiscount(List<Product> products) {
+    @Override
+    public BigDecimal calculatePriceBeforeDiscount(List<Product> products) {
         BigDecimal priceBeforeDiscount = BigDecimal.ZERO;
         for (Product product : products) {
             priceBeforeDiscount.add(product.getPrice());
@@ -65,8 +61,8 @@ public class OrderServiceImpl implements OrderService {
         return priceBeforeDiscount;
     }
 
-
-    private BigDecimal calculateDiscount(CustomerCategory cc, PaymentMethod pm) {
+    @Override
+    public BigDecimal calculateDiscount(CustomerCategory cc, PaymentMethod pm) {
 
         BigDecimal pmDiscount = pm.getDiscount();
         BigDecimal ccDiscount = cc.getDiscount();
@@ -74,7 +70,8 @@ public class OrderServiceImpl implements OrderService {
         return totalDiscount;
     }
 
-    private List<OrderItem> convertProductsToOrderItems(List<Product> products, Long orderId) {
+    @Override
+    public List<OrderItem> convertProductsToOrderItems(List<Product> products, Long orderId) {
         List<OrderItem> orderItems = new ArrayList<>();
         products.stream().forEach(product -> {
             orderItems.add(convertProductToOrderItem(product, orderId));
@@ -84,18 +81,14 @@ public class OrderServiceImpl implements OrderService {
         return orderItems;
     }
 
-    private OrderItem convertProductToOrderItem(Product product, Long orderId) {
+    @Override
+    public OrderItem convertProductToOrderItem(Product product, Long orderId) {
 
-        return OrderItem.builder()
-                .orderId(orderId)
-                .productId(product.getId())
-                .price(product.getPrice())
-                .name(product.getName())
-                .type(product.getType())
-                .build();
+        return OrderItem.builder().orderId(orderId).productId(product.getId()).price(product.getPrice()).name(product.getName()).type(product.getType()).build();
     }
 
-    private Long saveOrder(Order order) {
+    @Override
+    public Long saveOrder(Order order) {
 
         try {
             Order orderResult = orderRepository.create(order);

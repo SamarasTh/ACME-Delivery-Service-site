@@ -1,9 +1,6 @@
 package com.acme.eshop.service;
 
-;
-import com.acme.eshop.model.Customer;
 import com.acme.eshop.model.Product;
-import com.acme.eshop.repository.CustomerRepository;
 import com.acme.eshop.repository.ProductRepository;
 import lombok.AllArgsConstructor;
 import org.slf4j.Logger;

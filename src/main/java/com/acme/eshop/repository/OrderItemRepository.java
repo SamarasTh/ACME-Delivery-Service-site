@@ -53,9 +53,7 @@ public class OrderItemRepository implements CRUDRepository<OrderItem, Long> {
                 preparedStatement.setString(5, orderItem.getType());
                 preparedStatement.addBatch();
                 preparedStatement.clearParameters();
-                //orderItem.setOrderId(2L);
-                //orderItem.setProductId(2L);
-//                orderItem.setId(2L);
+
             }
 
             preparedStatement.executeBatch();
@@ -129,10 +127,6 @@ public class OrderItemRepository implements CRUDRepository<OrderItem, Long> {
              PreparedStatement preparedStatement = connection.prepareStatement(
                      SqlRepository.get("update.table.customer.000"))) {
 
-            // logger.info("Updating orderItemID with ID={}", orderItem.getOrderId());
-            // logger.info("Updating productItemID with ID={}", orderItem.getProductId());
-//            logger.info("Updating OrderItemID with ID={}", orderItem.getId());
-
 
             preparedStatement.setLong(1, orderItem.getOrderId());
             preparedStatement.setLong(2, orderItem.getProductId());
@@ -155,9 +149,6 @@ public class OrderItemRepository implements CRUDRepository<OrderItem, Long> {
 
             logger.info("Deleting orderItem {}", orderItem);
 
-//            preparedStatement.setLong(1, orderItem.getId());
-            //preparedStatement.setLong(2, orderItem.getProductId());
-            //preparedStatement.setLong(2, orderItem.getOrderId());
 
             int rowAffected = preparedStatement.executeUpdate();
             return rowAffected == 1;
